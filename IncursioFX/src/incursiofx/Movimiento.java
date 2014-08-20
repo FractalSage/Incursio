@@ -429,6 +429,10 @@ public class Movimiento {
     }
 
     public Movimiento(Tablero t) {
+        cSuperior = null;
+        cInferior = null;
+        fSuperior = null;
+        fInferior = null;
         tTablero = t;
         bSeleccion = false;
         fSeleccion = null;
@@ -451,10 +455,32 @@ public class Movimiento {
         bFinPartida = true;
         for (Ficha f : j.getfFichas()) {
             if (f.geteEstado() != Ficha.Estado.MUERTA) {
-                if (f.PuedeMoverse()) {
-                    bFinPartida = false;
+                if (!f.enMeta()) {
+                    int r;
+                    if (j.isbTurno()) {
+                        r = 1;
+                    } else {
+                        r = -1;
+                    }
+                    Casilla c = tTablero.getCasilla(f.getiPosicion()[0], f.getiPosicion()[1]);
+                    if (c.isBotTP() || c.isTopTP()) {
+                        CasoTP(c, r);
+                    } else {
+                        CasoComun(c, r);
+                    }
+                    boolean b = false;
+                    if (cSuperior != null || cInferior != null) {
+                        b = true;
+                    }
+                    if (b) {
+                        bFinPartida = false;
+                    }
                 }
             }
         }
+        cSuperior = null;
+        cInferior = null;
+        fSuperior = null;
+        fInferior = null;
     }
 }
