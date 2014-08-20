@@ -23,10 +23,6 @@ public class Ficha {
     private Estado eEstado;
     private int[] iPosicion = new int[2];
     private final int iNumero;
-    private Casilla cSuperior;
-    private Casilla cInferior;
-    private Ficha fSuperior;
-    private Ficha fInferior;
 
     public Jugador getjJugador() {
         return jJugador;

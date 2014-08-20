@@ -429,11 +429,11 @@ public class Movimiento {
     }
 
     public Movimiento(Tablero t) {
+        tTablero = t;
         cSuperior = null;
         cInferior = null;
         fSuperior = null;
-        fInferior = null;
-        tTablero = t;
+        fInferior = null;        
         bSeleccion = false;
         fSeleccion = null;
         Jugador j;
