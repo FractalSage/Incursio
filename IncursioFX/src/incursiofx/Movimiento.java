@@ -363,20 +363,11 @@ public class Movimiento {
                 if (PuedeSaltar(r, c)) {
                     fSeleccion.seteEstado(Ficha.Estado.SALTANDO);
                 } else {
-
                     if (fSeleccion.geteEstado() == Ficha.Estado.COMIO) {
                         fSeleccion.seteEstado(Ficha.Estado.MUERTA);
-                        i = f.getiNumero();
+                        i = fSeleccion.getiNumero();
                         tTablero.getBC().MovePiece(i, -1, -1);
-                    } else {
-                        if (fSeleccion.geteEstado() == Ficha.Estado.SALTANDO) {
-                            fSeleccion.seteEstado(Ficha.Estado.MUERTA);
-                            i = f.getiNumero();
-                            tTablero.getBC().MovePiece(i, -1, -1);
-                            tTablero.getCasilla(fSeleccion.getiPosicion()[0], fSeleccion.getiPosicion()[1]).setfOcupante(null);
-                        }
-                    }
-
+                    } 
                 }
             }
         }
@@ -385,7 +376,6 @@ public class Movimiento {
     private boolean PuedeSaltar(int r, Casilla c) {
         Ficha f = c.getfOcupante();
         if (!f.enMeta()) {
-            System.out.println("entre a");
             if (c.isBotTP() || c.isTopTP()) {
                 CasoTP(c, r);
             } else {
